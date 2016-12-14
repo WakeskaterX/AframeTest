@@ -4,8 +4,26 @@
   "description": "testing with aframe",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js",
+    "debug:start": "DEBUG=aframe* npm start",
+    "build:scripts": "browserify app/client/main.js -t babelify -o public/js/bundle.js",
+    "watch:scripts": "watchify app/client/main.js -t babelify -o public/js/bundle.js"
   },
   "author": "Jason Carter",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "aframe": "^0.3.2",
+    "debug": "^2.3.3",
+    "express": "^4.14.0",
+    "lodash": "^4.17.2",
+    "moment": "^2.17.1",
+    "pug": "^2.0.0-beta6"
+  },
+  "devDependencies": {
+    "babelify": "^7.3.0",
+    "browserify": "^13.1.1",
+    "eslint-config-airbnb": "^13.0.0",
+    "eslint-plugin-import": "^2.2.0",
+    "watchify": "^3.7.0"
+  }
 }

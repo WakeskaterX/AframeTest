@@ -1,0 +1,21 @@
+{
+  "extends": "airbnb/base",
+  "rules": {
+    "camelcase": 0,
+    "prefer-const": 0,
+    "max-len": 0,
+    "comma-dangle": 0,
+    "no-use-before-define": ["error", { "functions": false }],
+    "no-console": 0
+  },
+  "env": {
+    "browser": true,
+    "node": true,
+    "mocha": true
+  },
+  "globals": {
+    "Vue": true,
+    "$": true,
+    "_": true
+  }
+}
