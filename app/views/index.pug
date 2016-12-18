@@ -21,6 +21,19 @@ block content
     )
 
     //Entities
-    a-box(id="main-box" depth="1" width="1" height="1" opacity="1" position="1 1 -5" src="#box")
+    a-box(id="main-box" depth="1" width="1" height="1"
+      opacity="1" position="1 1 -5"
+      src="#box" scale-on-click="to: 2 2 2"
+    )
+
+    a-entity(
+      bmfont-text="text: Welcome to AFrame Test Realm\nLook at the box and click to scale up and down; color: white; align: center; width: 240"
+      position="-2 2 -4"
+      scale="2 2 2"
+    )
 
     a-sky(src="#sky")
+
+    //Camera with Child Cursor
+    a-camera
+      a-cursor

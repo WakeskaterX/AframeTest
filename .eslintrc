@@ -17,6 +17,7 @@
     "Vue": true,
     "$": true,
     "_": true,
-    "THREE": true
+    "THREE": true,
+    "AFRAME": true
   }
 }
