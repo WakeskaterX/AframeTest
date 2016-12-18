@@ -16,6 +16,7 @@
   "globals": {
     "Vue": true,
     "$": true,
-    "_": true
+    "_": true,
+    "THREE": true
   }
 }

@@ -1,7 +1,26 @@
 extends ./layout
 block content
   a-scene
+    //Assets
     a-assets
-      img(id="box" src="img/tex_box.jpg")
-    a-box(depth="1" width="1" height="1" opacity="1" position="1 0 -5" src="#box")
-    a-sky(color="#73D7DD")
+      img(id="box" src="img/tex/box.jpg")
+      img(id="sky" src="img/tex/sky_lightblue.jpg")
+      img(id="dirt" src="img/tex/dirt.jpg")
+      a-asset-item(id="sinon" src="/models/sinon.dae")
+
+    //Lighting
+    a-light(type="spot" color="#FAA" position="2 2 0" look-at="main-box")
+    a-light(type="point" color="#AAA" position="0 10 0")
+
+    //Ground
+    a-entity(
+      position="0 0 0"
+      geometry="primative: plane; width: 25; height: 25;"
+      rotation="-90 0 0"
+      material="src: #dirt; repeat: 10 10; transparent: false;"
+    )
+
+    //Entities
+    a-box(id="main-box" depth="1" width="1" height="1" opacity="1" position="1 1 -5" src="#box")
+
+    a-sky(src="#sky")
