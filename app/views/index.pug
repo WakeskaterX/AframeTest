@@ -6,7 +6,16 @@ block content
       img(id="box" src="img/tex/box.jpg")
       img(id="sky" src="img/tex/sky_lightblue.jpg")
       img(id="dirt" src="img/tex/dirt.jpg")
-      a-asset-item(id="sinon" src="/models/sinon.dae")
+
+    //Entities
+    a-box(id="main-box" depth="1" width="1" height="1"
+      opacity="1" position="1 1 -5"
+      src="#box"
+      color="#DDD"
+      interactable="color: #FFF; message_id: main-box-text;"
+      message="This is a box"
+    )
+      a-entity(id="main-box-text" position="1 1 0" scale="1.5 1.5 1.5" interactable-text="text: This is a box; color: white; align: center; width: 200")
 
     //Lighting
     a-light(type="spot" color="#FAA" position="2 2 0" look-at="main-box")
@@ -18,22 +27,11 @@ block content
       geometry="primative: plane; width: 25; height: 25;"
       rotation="-90 0 0"
       material="src: #dirt; repeat: 10 10; transparent: false;"
+      style="z-index: -2;"
     )
 
-    //Entities
-    a-box(id="main-box" depth="1" width="1" height="1"
-      opacity="1" position="1 1 -5"
-      src="#box" scale-on-click="to: 2 2 2"
-    )
-
-    a-entity(
-      bmfont-text="text: Welcome to AFrame Test Realm\nLook at the box and click to scale up and down; color: white; align: center; width: 240"
-      position="-2 2 -4"
-      scale="2 2 2"
-    )
-
-    a-sky(src="#sky")
+    a-sky(src="#sky" rotation="0 0 0" position="0 -100 0")
 
     //Camera with Child Cursor
     a-camera
-      a-cursor
+      a-cursor(cursor-interactable)

@@ -1,30 +1,57 @@
-
-AFRAME.registerComponent('scale-on-click', {
+AFRAME.registerComponent('interactable', {
   schema: {
-    to: { default: '1.5 1.5 1.5' },
+    color: {
+      default: '#AAA'
+    },
+    message_id: {
+      default: ''
+    }
   },
   init() {
     let data = this.data;
-    this.el.addEventListener('click', function setScale() {
-      let prev_scale = this.getAttribute('scale') || convertToVector3('1 1 1');
-      if (typeof data.to === 'string') data.to = convertToVector3(data.to);
-      let prev_pos = this.getAttribute('position');
-      let new_pos = {
-        x: prev_pos.x + ((data.to.x - prev_scale.x) / 2),
-        y: prev_pos.y + ((data.to.y - prev_scale.y) / 2),
-        z: prev_pos.z + ((data.to.z - prev_scale.z) / 2)
-      };
+    data.message = this.el.getAttribute('message');
+    data.original_color = this.el.getAttribute('color') || '#FFF';
 
-      console.log(prev_scale, data.to, new_pos, prev_pos);
-      this.setAttribute('scale', data.to);
-      this.setAttribute('position', new_pos);
-      data.to = prev_scale;
-      console.log(prev_scale, data.to, new_pos, prev_pos);
+    this.el.addEventListener('mouseenter', function setcolor() {
+      this.setAttribute('color', data.color);
+    });
+
+    this.el.addEventListener('mouseleave', function revertColor() {
+      this.setAttribute('color', data.original_color);
+    });
+
+    this.el.addEventListener('click', function display() {
+      setTimeout(() => {
+        document.getElementById(data.message_id).setAttribute('visible', true);
+      }, 10);
     });
   }
 });
 
-function convertToVector3(vect_str) {
-  let spl = vect_str.split(' ');
-  return new THREE.Vector3(spl[0], spl[1], spl[2]);
-}
+AFRAME.registerComponent('interactable-text', {
+  schema: {
+    text: {
+      default: 'Default Message'
+    },
+    color: {
+      default: '#FFF'
+    },
+    background: {
+      default: 'rgba(0, 0, 100, .5)'
+    }
+  },
+  init() {
+    this.el.setAttribute('material', `color: ${this.data.background};`)
+  }
+})
+
+AFRAME.registerComponent('cursor-interactable', {
+  init() {
+    this.el.addEventListener('click', () => {
+      let all_nodes = document.querySelectorAll('[interactable-text]');
+      all_nodes.forEach((node) => {
+        node.setAttribute('visible', false);
+      });
+    });
+  }
+})
