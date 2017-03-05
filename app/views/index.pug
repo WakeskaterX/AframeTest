@@ -7,6 +7,9 @@ block content
       img(id="sky" src="img/tex/sky_lightblue.jpg")
       img(id="dirt" src="img/tex/dirt.jpg")
 
+    //Remote
+    a-entity(daydream-controller)
+
     //Entities
     a-box(id="main-box" depth="1" width="1" height="1"
       opacity="1" position="1 1 -5"
@@ -15,7 +18,11 @@ block content
       interactable="color: #FFF; message_id: main-box-text;"
       message="This is a box"
     )
-      a-entity(id="main-box-text" position="1 1 0" scale="1.5 1.5 1.5" interactable-text="text: This is a box; color: white; align: center; width: 200")
+      a-entity(
+        id="main-box-text"
+        position="1 2 0" scale="1.5 1.5 1.5" geometry="primitive:plane"
+        interactable-text="text: This is a box; color: white; align: center; width: 200"
+      )
 
     //Lighting
     a-light(type="spot" color="#FAA" position="2 2 0" look-at="main-box")

@@ -20,9 +20,11 @@ AFRAME.registerComponent('interactable', {
       this.setAttribute('color', data.original_color);
     });
 
-    this.el.addEventListener('click', function display() {
+    this.el.addEventListener('click', () => {
+      console.log('clicked box');
       setTimeout(() => {
-        document.getElementById(data.message_id).setAttribute('visible', true);
+        let all_text = this.el.querySelectorAll('[interactable-text]');
+        all_text.forEach(node => node.setAttribute('visible', true));
       }, 10);
     });
   }
@@ -41,9 +43,9 @@ AFRAME.registerComponent('interactable-text', {
     }
   },
   init() {
-    this.el.setAttribute('material', `color: ${this.data.background};`)
+    this.el.setAttribute('material', `color: ${this.data.background};`);
   }
-})
+});
 
 AFRAME.registerComponent('cursor-interactable', {
   init() {
@@ -54,4 +56,4 @@ AFRAME.registerComponent('cursor-interactable', {
       });
     });
   }
-})
+});
